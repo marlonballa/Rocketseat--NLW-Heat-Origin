@@ -19,28 +19,28 @@
             alt="Foto de perfil escolhida pelo usuário"
           />
         </div>
-        <h1>Nome do Usuário</h1>
+        <h1 id="userName">Nome do Usuário</h1>
         <a href=""
           ><img src="./images/github.svg" alt="Icone do GitHub" />
           github_user</a>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-        <ul>
-          <li>
+        <ul id="linksSocialMedia">
+          <li class="youtube">
             <a href="https://www.youtube.com/" target="_blank">
               <img src="./images/youtube.svg" alt="Icone do Youtube" />
             </a>
           </li>
-          <li>
+          <li class="instagram">
             <a href="" target="_blank">
               <img src="./images/instagram.svg" alt="Icone do Instagram" />
             </a>
           </li>
-          <li>
+          <li class="facebook">
             <a href="" target="_blank">
               <img src="./images/facebook.svg" alt="Icone do Facebook" />
             </a>
           </li>
-          <li>
+          <li class="twitter">
             <a href="" target="_blank">
               <img src="./images/twitter.svg" alt="Icone do Twitter" />
             </a>
@@ -48,5 +48,34 @@
         </ul>
       </div>
     </main>
+    <script>
+
+      const userSocialMedia = {
+        github: "marlonballa",
+        youtube: "UCFAd7NDgl2j9qA2pX49NUMg",
+        instagram: "ballamarlon",
+        facebook: "MarlonBalla07",
+        twitter: "MarlonBalla"
+      }
+
+      function changeSocialMediaLinks() {
+        //Forma tradicional de realizar a mudança
+        //document.getElementById('userName').textContent = "Rogério Gabriel"
+
+        //O JavaScript entende que um ID pode ser usado de forma direta para acessar modificadores do DOM.
+        //userName.textContent = "Marlon"
+
+        //O JavaScript permite que ao invés de números, utilizemos elementos da DOM como parâmetros do FOR. 
+        //Neste caso estamos dizendo que para cada li filho da ul de ID="linksSocialMedia", acontecerá uma alteração. 
+        for(let li of linksSocialMedia.children) {
+          //guarda a classe referente a rede social que deve receber a alteração
+          const socialMedia = li.getAttribute('class')
+          //Entre na li pegue o primeiro filho e altere o conteúdo do atributo href
+          li.children[0].href = `https://www.${socialMedia}.com/${userSocialMedia[socialMedia]}`
+        } 
+      }
+
+      changeSocialMediaLinks();
+    </script>
   </body>
 </html>
